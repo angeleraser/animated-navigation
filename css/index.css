@@ -1,0 +1,122 @@
+@import url("./sanitize.css");
+
+:root {
+  --blue: #208ff9;
+  --darkblue: #3b73b1;
+  --lightblue: #ebfbff;
+  --black: #444;
+  --white: #fff;
+}
+
+body {
+  background-color: var(--lightblue);
+  min-height: 100vh;
+  min-width: 360px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: linear-gradient(
+    to bottom,
+    var(--lightblue) 0%,
+    var(--lightblue) 50%,
+    var(--blue) 50%,
+    var(--blue) 100%
+  );
+}
+
+.nav {
+  padding: 32px;
+  background-color: var(--white);
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  border-radius: 6px;
+  position: relative;
+}
+
+.menu,
+.nav,
+.menu-icon {
+  display: flex;
+  align-items: center;
+}
+
+.menu {
+  gap: 32px;
+  margin: 0;
+  width: 320px;
+  overflow: hidden;
+}
+
+.menu-item {
+  flex-shrink: 0;
+  transform: rotateY(1turn) translateX(72px);
+  opacity: 0;
+}
+
+.menu-link {
+  text-decoration: none;
+  color: var(--black);
+  font-weight: 500;
+}
+
+.menu-link:hover {
+  color: var(--darkblue);
+}
+
+.menu,
+.menu .menu-item,
+.menu-icon span {
+  transition: 1s transform cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  transition-property: width, transform, opacity;
+}
+
+.checkbox,
+.menu-icon {
+  width: 28px;
+  height: 28px;
+  cursor: pointer;
+}
+
+.checkbox {
+  position: absolute;
+  right: 32px;
+  opacity: 0;
+  z-index: 10;
+}
+
+.menu-icon {
+  position: relative;
+  justify-content: center;
+}
+
+.menu-icon .line {
+  display: inline-block;
+  width: 100%;
+  border-bottom: 3px solid var(--darkblue);
+  position: absolute;
+}
+
+.menu-icon .line:first-child {
+  transform: rotate(135deg);
+}
+
+.menu-icon .line:last-child {
+  transform: rotate(-135deg);
+}
+
+/* Css programming :) */
+.checkbox:checked + .menu {
+  width: 0px;
+}
+
+.checkbox:checked + .menu ~ .menu-icon .line:last-child {
+  transform: rotate(0) translateY(-6px);
+}
+
+.checkbox:checked + .menu ~ .menu-icon .line:first-child {
+  transform: rotate(0) translateY(6px);
+}
+
+.checkbox:not(:checked) + .menu .menu-item {
+  transform: rotateY(0turn) translateX(0px);
+  opacity: 1;
+}
